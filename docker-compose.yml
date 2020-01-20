@@ -1,7 +1,28 @@
-version: "3.3"
+version: '3.4'
 
 services:
   rtmp:
     build: .
-    image: tiangolo/nginx-rtmp
+    image: nginx-rtmp
     network_mode: host
+    volumes:
+    - nginx-record:/tmp/record
+  samba:
+    image: dperson/samba
+    network_mode: host
+    environment:
+      TZ: 'Asia/Shanghai'
+    tmpfs:
+      - /tmp
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    volumes:
+      - nginx-record:/mnt:z
+      - samba-shares:/mnt2:z
+    command: '-s "record;/mnt" -s "share;/mnt2;yes;no;no;linux" -u "linux;Passw0rd"'
+
+volumes:
+  nginx-record:
+  samba-shares:
+
