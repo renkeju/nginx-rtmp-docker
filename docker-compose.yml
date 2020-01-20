@@ -1,0 +1,7 @@
+version: "3.3"
+
+services:
+  rtmp:
+    build: .
+    image: tiangolo/nginx-rtmp
+    network_mode: host

@@ -45,6 +45,10 @@ RUN cd /tmp/build/nginx/${NGINX_VERSION} && \
     mkdir /var/lock/nginx && \
     rm -rf /tmp/build
 
+# make live Video Directory
+RUN mkdir /tmp/record && \
+    chown www-data.www-data /tmp/record
+
 # Forward logs to Docker
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log
