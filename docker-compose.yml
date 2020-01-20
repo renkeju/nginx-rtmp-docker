@@ -19,10 +19,8 @@ services:
     tty: true
     volumes:
       - nginx-record:/mnt:z
-      - samba-shares:/mnt2:z
-    command: '-s "record;/mnt" -s "share;/mnt2;yes;no;no;linux" -u "linux;Passw0rd"'
+    command: '-s "record;/mnt;yes;yes;yes"'
 
 volumes:
   nginx-record:
-  samba-shares:
 
